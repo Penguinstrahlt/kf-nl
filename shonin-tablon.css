@@ -317,16 +317,23 @@
     border-top: 1px solid #222;
 }
 
-/* Neutraliza los <br> automáticos de Foroactivo dentro del contenedor */
+/* ==========================================
+   SOLUCIÓN DE SALTOS DE LÍNEA EN FOROACTIVO
+   ========================================== */
+
+/* Anula los <br> automáticos generados por Foroactivo en la plantilla */
 .shn-container br {
-    display: none;
+    display: none !important;
 }
 
-/* Restaura los saltos de línea solo en textos donde sí se necesitan */
+/* Mantiene los saltos de línea donde sí se escriben textos largos */
 .shn-text br {
-    display: inline;
+    display: inline !important;
 }
-.shn-footer img {
-    opacity: 0.5;
-    width: 30px;
+
+/* Elimina márgenes fantasma que Foroactivo genera en párrafos vacíos */
+.shn-container p:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
