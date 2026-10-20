@@ -212,16 +212,18 @@ br + .shn-container {
     text-transform: uppercase !important;
     line-height: 1.2 !important;
     width: 100% !important;
+    border-bottom: none !important; /* Elimina cualquier borde gris plano del foro */
 }
 
-/* Restaure de la línea del título con degradado */
+/* Forzar que el degradado siempre tenga altura, margen y se extienda al 100% */
 .shn-title::after {
     content: "" !important;
-    flex: 1 !important;
-    height: 1px !important;
+    flex: 1 1 auto !important;
+    height: 2px !important;
     background: linear-gradient(to right, var(--shn-gold), transparent) !important;
     margin-left: 20px !important;
     display: block !important;
+    min-width: 50px !important;
 }
 
 .shn-sub-title {
