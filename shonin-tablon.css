@@ -374,3 +374,39 @@
 .shn-footer {
     margin-bottom: 0 !important;
 }
+
+/* ==========================================
+   BLINDAJE ANTI-WYSIWYG / RE-PREVISUALIZACIÓN FOROACTIVO
+   ========================================== */
+
+/* 1. Ocultar todos los <br> directos del contenedor principal */
+.shn-container > br,
+.shn-content > br {
+    display: none !important;
+}
+
+/* 2. Ocultar párrafos vacíos creados por el editor */
+.shn-container p,
+.shn-content p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.shn-container p:empty,
+.shn-content p:empty {
+    display: none !important;
+}
+
+/* 3. Evitar que los saltos entren en el flujo flex/block de la cabecera, pestañas y tarjetas */
+.shn-tabs br,
+.shn-header br,
+.shn-mission-card br,
+.shn-mission-header br,
+.shn-mission-grid br,
+.shn-stats-grid br {
+    display: none !important;
+}
+
+/* 4. Permitir saltos ÚNICAMENTE dentro del texto explicativo/narrativo */
+.shn-text br {
+    display: inline !important;
+}
