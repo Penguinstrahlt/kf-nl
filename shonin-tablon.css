@@ -1,7 +1,10 @@
 /* ==========================================
-   TABLÓN DE MISIONES - SHŌNIN TSUTOME (FIX DEFINITIVO)
+   TABLÓN DE MISIONES - SHŌNIN TSUTOME
    ========================================== */
 
+/* ------------------------------------------
+   1. CONTENEDOR PRINCIPAL Y VARIABLES
+   ------------------------------------------ */
 .shn-container {
     --shn-gold: #d4af37;
     --shn-gold-light: #f9e297;
@@ -9,119 +12,160 @@
     --shn-dark-grey: #1a1a1a;
     --shn-text: #e0e0e0;
     
-    margin: 30px auto;
-    width: 95%;
-    max-width: 800px;
-    background: var(--shn-black);
-    font-family: 'Montserrat', sans-serif;
-    color: var(--shn-text);
-    border: 1px solid #333;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-    
-    /* TRUCO CLAVE: Mata cualquier espacio en blanco o nodo fantasma heredado */
-    font-size: 0;
+    margin: 30px auto !important;
+    width: 95% !important;
+    max-width: 800px !important;
+    background: var(--shn-black) !important;
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--shn-text) !important;
+    border: 1px solid #333 !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    font-size: 0 !important; /* Muta espacios fantasmas entre nodos */
 }
 
-/* Forzar tamaño de texto normal en los hijos para que no se herede el 0 */
+/* Restaura el tamaño de fuente inicial para los elementos internos */
 .shn-container * {
     font-size: initial;
 }
 
-/* Ocultar tajantemente cualquier cosa que Foroactivo intente inyectar */
+/* ------------------------------------------
+   2. REGLAS DE LIMPIEZA ANTI-FOROACTIVO (<br> / <p>)
+   ------------------------------------------ */
+body br,
+.postbody br {
+    line-height: 0;
+}
+
+.shn-container,
+.shn-container *,
+.shn-container + br,
+br + .shn-container {
+    margin-top: 0 !important;
+}
+
 .shn-container br,
 .shn-container p:empty,
-.shn-container hr {
+.shn-container p:not(:has(*)) {
     display: none !important;
     margin: 0 !important;
     padding: 0 !important;
     height: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
 }
 
-/* Encabezado */
+/* Ocultar saltos en estructuras rígidas */
+.shn-tabs br,
+.shn-header br,
+.shn-mission-card br,
+.shn-mission-header br,
+.shn-mission-grid br,
+.shn-stats-grid br {
+    display: none !important;
+}
+
+/* Mantiene los saltos de línea donde se escribe texto descriptivo */
+.shn-text br {
+    display: inline !important;
+}
+
+/* ------------------------------------------
+   3. ENCABEZADO
+   ------------------------------------------ */
 .shn-header {
-    height: 250px;
+    height: 250px !important;
     background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--shn-black)), 
-                url('https://cdn.imgchest.com/files/63d7504de4a4.png') center/cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 25px;
-    border-bottom: 2px solid var(--shn-gold);
+                url('https://cdn.imgchest.com/files/63d7504de4a4.png') center/cover !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-bottom: 25px !important;
+    border-bottom: 2px solid var(--shn-gold) !important;
     margin: 0 !important;
 }
 
-.shn-header h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 2.8rem;
-    color: var(--shn-gold);
-    margin: 0;
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-align: center;
+.shn-header-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: 2.8rem !important;
+    color: var(--shn-gold) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5) !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
 }
 
 .shn-header-sub {
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #888;
-    margin-top: 5px;
-    text-align: center;
+    font-size: 10px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    color: #888 !important;
+    margin-top: 5px !important;
+    text-align: center !important;
+    line-height: 1 !important;
 }
 
-/* Sistema de Pestañas Navegación */
+/* ------------------------------------------
+   4. SISTEMA DE PESTAÑAS Y NAVEGACIÓN
+   ------------------------------------------ */
 .shn-tabs {
-    display: flex;
-    background: #000;
-    border-bottom: 1px solid #222;
-    flex-wrap: wrap;
+    display: flex !important;
+    background: #000 !important;
+    border-bottom: 0 !important;
+    flex-wrap: wrap !important;
     margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important;
 }
 
 .shn-radio {
-    display: none;
+    display: none !important;
 }
 
 .shn-label {
-    flex: 1;
-    min-width: 100px;
-    padding: 14px 5px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #666;
-    transition: 0.4s;
-    border-top: 2px solid transparent;
+    flex: 1 !important;
+    min-width: 100px !important;
+    padding: 14px 5px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: #666 !important;
+    transition: 0.4s !important;
+    border-top: 2px solid transparent !important;
+    line-height: 1.2 !important;
 }
 
 .shn-label i {
-    display: block;
-    font-size: 15px;
-    margin-bottom: 5px;
-    color: #444;
+    display: block !important;
+    font-size: 15px !important;
+    margin-bottom: 5px !important;
+    color: #444 !important;
 }
 
 .shn-label:hover, 
 .shn-label:hover i {
-    color: var(--shn-gold);
+    color: var(--shn-gold) !important;
 }
 
-/* Activación de Pestañas */
+/* Activación de Pestañas Seleccionadas */
 #shn-m1:checked ~ .shn-tabs label[for="shn-m1"],
 #shn-m2:checked ~ .shn-tabs label[for="shn-m2"],
 #shn-m3:checked ~ .shn-tabs label[for="shn-m3"],
 #shn-m4:checked ~ .shn-tabs label[for="shn-m4"],
 #shn-m5:checked ~ .shn-tabs label[for="shn-m5"] {
-    background: var(--shn-dark-grey);
-    color: var(--shn-gold);
-    border-top-color: var(--shn-gold);
+    background: var(--shn-dark-grey) !important;
+    color: var(--shn-gold) !important;
+    border-top-color: var(--shn-gold) !important;
 }
 
 #shn-m1:checked ~ .shn-tabs label[for="shn-m1"] i,
@@ -129,17 +173,20 @@
 #shn-m3:checked ~ .shn-tabs label[for="shn-m3"] i,
 #shn-m4:checked ~ .shn-tabs label[for="shn-m4"] i,
 #shn-m5:checked ~ .shn-tabs label[for="shn-m5"] i {
-    color: var(--shn-gold);
+    color: var(--shn-gold) !important;
 }
 
-/* Contenido de Paneles */
+/* ------------------------------------------
+   5. CONTENIDOS Y PANELES (TABS)
+   ------------------------------------------ */
 .shn-content {
     display: none;
-    padding: 40px;
-    min-height: 400px;
-    background: radial-gradient(circle at top right, #1a1a1a, #0a0a0a);
-    animation: shnSlide 0.6s ease-out;
+    padding: 40px !important;
+    min-height: 400px !important;
+    background: radial-gradient(circle at top right, #1a1a1a, #0a0a0a) !important;
+    animation: shnSlide 0.6s ease-out !important;
     margin: 0 !important;
+    border-top: 1px solid #222 !important;
 }
 
 @keyframes shnSlide {
@@ -152,234 +199,44 @@
 #shn-m3:checked ~ .shn-mc3,
 #shn-m4:checked ~ .shn-mc4,
 #shn-m5:checked ~ .shn-mc5 {
-    display: block;
+    display: block !important;
 }
 
-/* Títulos internos */
+/* ------------------------------------------
+   6. TIPOGRAFÍA Y TÍTULOS DE CONTENIDO
+   ------------------------------------------ */
 .shn-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px;
-    color: var(--shn-gold);
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    text-transform: uppercase;
+    font-family: 'Noto Serif JP', serif !important;
+    font-size: 22px !important;
+    color: var(--shn-gold) !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 0 25px 0 !important;
+    padding: 0 !important;
+    text-transform: uppercase !important;
+    line-height: 1.2 !important;
 }
 
 .shn-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--shn-gold), transparent);
-    margin-left: 20px;
+    content: "" !important;
+    flex: 1 !important;
+    height: 1px !important;
+    background: linear-gradient(to right, var(--shn-gold), transparent) !important;
+    margin-left: 20px !important;
 }
 
 .shn-sub-title {
-    font-family: 'Cinzel', serif;
-    font-size: 15px;
-    color: var(--shn-gold);
-    margin: 25px 0 15px 0;
-    border-bottom: 1px solid #222;
-    padding-bottom: 5px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: 'Cinzel', serif !important;
+    font-size: 15px !important;
+    color: var(--shn-gold) !important;
+    margin: 25px 0 15px 0 !important;
+    border-bottom: 1px solid #222 !important;
+    padding-bottom: 5px !important;
+    text-transform: uppercase !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    line-height: 1.2 !important;
 }
 
-.shn-sub-title i {
-    color: var(--shn-gold);
-}
-
-.shn-text {
-    line-height: 1.8;
-    font-size: 13px;
-    color: #bbb;
-    text-align: justify;
-}
-
-.shn-text b {
-    color: var(--shn-gold);
-    font-weight: 600;
-}
-
-.shn-mb-15 { margin-bottom: 15px; }
-.shn-mb-20 { margin-bottom: 20px; }
-
-/* Tarjeta de Misión */
-.shn-mission-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid #222;
-    border-left: 3px solid var(--shn-gold);
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: 0.3s;
-    position: relative;
-}
-
-.shn-mission-card:hover {
-    border-color: var(--shn-gold);
-    background: rgba(212, 175, 55, 0.04);
-    transform: translateX(5px);
-}
-
-.shn-card-done { border-left-color: #555 !important; }
-.shn-card-progress { border-left-color: #e6c200 !important; }
-.shn-card-pending { border-left-color: #d9534f !important; }
-
-.shn-mission-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #222;
-    padding-bottom: 10px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.shn-mission-title {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    color: var(--shn-gold);
-    margin: 0;
-}
-
-/* Badges */
-.shn-badge {
-    font-size: 10px;
-    padding: 3px 10px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.shn-badge-d { background: #1b2e1b; color: #62c462; border: 1px solid #2e592e; }
-.shn-badge-c { background: #1a2a3a; color: #5bc0de; border: 1px solid #2a4a6a; }
-.shn-badge-b { background: #3a2a1a; color: #f0ad4e; border: 1px solid #6a4a2a; }
-.shn-badge-done { background: #222; color: #888; border: 1px solid #444; }
-.shn-badge-progress { background: #332a00; color: #e6c200; border: 1px solid #665400; }
-.shn-badge-pending { background: #3a1a1a; color: #d9534f; border: 1px solid #6a2a2a; }
-
-/* Cuadrículas */
-.shn-mission-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
-    margin: 12px 0;
-    font-size: 12px;
-    color: #aaa;
-}
-
-.shn-mission-grid div {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 8px 12px;
-    border: 1px solid #1c1c1c;
-}
-
-.shn-mission-grid b {
-    color: var(--shn-gold);
-}
-
-.shn-reward {
-    font-family: 'Cinzel', serif;
-    color: #fff;
-    font-size: 13px;
-}
-
-.shn-reward::before {
-    content: "両 ";
-    color: var(--shn-gold);
-}
-
-.shn-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.shn-stat-box {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid #222;
-    padding: 20px;
-    text-align: center;
-}
-
-.shn-stat-box i {
-    font-size: 24px;
-    color: var(--shn-gold);
-    margin-bottom: 10px;
-}
-
-.shn-stat-number {
-    font-family: 'Cinzel', serif;
-    font-size: 22px;
-    color: #fff;
-    display: block;
-}
-
-.shn-stat-label {
-    font-size: 10px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Pie de Página */
-.shn-footer {
-    background: #000;
-    padding: 15px;
-    text-align: center;
-    border-top: 1px solid #222;
-    margin: 0 !important;
-}
-
-.shn-footer img {
-    opacity: 0.5;
-    width: 30px;
-}
-
-/* ==========================================
-   FIX DE ESPACIOS SUPERIORES E INTERMEDIOS
-   ========================================== */
-
-/* Anula los <br> que Foroactivo mete antes del contenedor principal */
-body br,
-.postbody br {
-    line-height: 0;
-}
-
-/* Ocultar cualquier elemento <br> e inyección dentro de la estructura */
-.shn-container,
-.shn-container *,
-.shn-container + br,
-br + .shn-container {
-    margin-top: 0 !important;
-}
-
-.shn-container br,
-.shn-container p:empty {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 0 !important;
-    font-size: 0 !important;
-}
-
-/* Fijar los bloques para que no dejen margen interno */
-.shn-tabs {
-    margin-bottom: 0 !important;
-    border-bottom: 0 !important;
-}
-
-.shn-content {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    border-top: 1px solid #222;
-}
-
-.shn-footer {
-    margin-top: 0 !important;
-}
+.shn-sub-title i
