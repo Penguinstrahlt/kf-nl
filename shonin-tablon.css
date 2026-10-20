@@ -410,3 +410,57 @@
 .shn-text br {
     display: inline !important;
 }
+
+/* ==========================================
+   SOLUCIÓN RADICAL ANTI-FRANJAS EN FOROACTIVO
+   ========================================== */
+
+/* 1. Neutralizar cualquier separación heredada del foro */
+.shn-container {
+    margin: 30px auto !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+/* 2. Anular márgenes y paddings fantasmas en los bloques principales */
+.shn-header,
+.shn-tabs,
+.shn-content,
+.shn-footer {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 3. Reasignar el padding necesario de forma controlada */
+.shn-header {
+    height: 250px !important;
+    padding-bottom: 25px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+}
+
+.shn-tabs {
+    padding: 0 !important;
+}
+
+.shn-content {
+    padding: 40px !important;
+}
+
+.shn-footer {
+    padding: 15px !important;
+}
+
+/* 4. Ocultar de forma absoluta cualquier etiqueta <br> o <p> vacía inyectada */
+.shn-container br,
+.shn-container p:empty,
+.shn-container p:not(:has(*)) {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
+    line-height: 0 !important;
+}
