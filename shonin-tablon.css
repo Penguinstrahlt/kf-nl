@@ -201,7 +201,8 @@ br + .shn-container {
 /* ------------------------------------------
    6. TIPOGRAFÍA Y LÍNEA DORA DE DEGRADADO (RESTAURADA)
    ------------------------------------------ */
-.shn-title {
+.shn-title,
+h2.shn-title {
     font-family: 'Noto Serif JP', serif !important;
     font-size: 22px !important;
     color: var(--shn-gold) !important;
@@ -212,15 +213,16 @@ br + .shn-container {
     text-transform: uppercase !important;
     line-height: 1.2 !important;
     width: 100% !important;
-    border-bottom: none !important; /* Elimina cualquier borde gris plano del foro */
+    border-bottom: none !important;
 }
 
-/* Forzar que el degradado siempre tenga altura, margen y se extienda al 100% */
-.shn-title::after {
+/* La línea dorada en degradado */
+.shn-title::after,
+h2.shn-title::after {
     content: "" !important;
-    flex: 1 1 auto !important;
-    height: 2px !important;
-    background: linear-gradient(to right, var(--shn-gold), transparent) !important;
+    flex: 1 !important;
+    height: 1px !important;
+    background: linear-gradient(to right, #d4af37, transparent) !important;
     margin-left: 20px !important;
     display: block !important;
     min-width: 50px !important;
