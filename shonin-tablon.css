@@ -340,3 +340,46 @@
     opacity: 0.5;
     width: 30px;
 }
+
+/* ==========================================
+   FIX DE ESPACIOS SUPERIORES E INTERMEDIOS
+   ========================================== */
+
+/* Anula los <br> que Foroactivo mete antes del contenedor principal */
+body br,
+.postbody br {
+    line-height: 0;
+}
+
+/* Ocultar cualquier elemento <br> e inyección dentro de la estructura */
+.shn-container,
+.shn-container *,
+.shn-container + br,
+br + .shn-container {
+    margin-top: 0 !important;
+}
+
+.shn-container br,
+.shn-container p:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+}
+
+/* Fijar los bloques para que no dejen margen interno */
+.shn-tabs {
+    margin-bottom: 0 !important;
+    border-bottom: 0 !important;
+}
+
+.shn-content {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-top: 1px solid #222;
+}
+
+.shn-footer {
+    margin-top: 0 !important;
+}
