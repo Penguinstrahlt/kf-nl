@@ -24,12 +24,7 @@
     overflow: hidden !important;
     padding: 0 !important;
     line-height: 1 !important;
-    font-size: 0 !important; /* Muta espacios fantasmas entre nodos */
-}
-
-/* Restaura el tamaño de fuente inicial para los elementos internos */
-.shn-container * {
-    font-size: initial;
+    font-size: 0 !important;
 }
 
 /* ------------------------------------------
@@ -58,7 +53,6 @@ br + .shn-container {
     font-size: 0 !important;
 }
 
-/* Ocultar saltos en estructuras rígidas */
 .shn-tabs br,
 .shn-header br,
 .shn-mission-card br,
@@ -68,13 +62,12 @@ br + .shn-container {
     display: none !important;
 }
 
-/* Mantiene los saltos de línea donde se escribe texto descriptivo */
 .shn-text br {
     display: inline !important;
 }
 
 /* ------------------------------------------
-   3. ENCABEZADO
+   3. ENCABEZADO Y TÍTULO PRINCIPAL (RESTAURADO)
    ------------------------------------------ */
 .shn-header {
     height: 250px !important;
@@ -89,6 +82,7 @@ br + .shn-container {
     margin: 0 !important;
 }
 
+.shn-header h1,
 .shn-header-title {
     font-family: 'Cinzel', serif !important;
     font-size: 2.8rem !important;
@@ -100,6 +94,7 @@ br + .shn-container {
     text-transform: uppercase !important;
     text-align: center !important;
     line-height: 1.1 !important;
+    display: block !important;
 }
 
 .shn-header-sub {
@@ -110,6 +105,7 @@ br + .shn-container {
     margin-top: 5px !important;
     text-align: center !important;
     line-height: 1 !important;
+    display: block !important;
 }
 
 /* ------------------------------------------
@@ -157,7 +153,7 @@ br + .shn-container {
     color: var(--shn-gold) !important;
 }
 
-/* Activación de Pestañas Seleccionadas */
+/* Activación de Pestañas */
 #shn-m1:checked ~ .shn-tabs label[for="shn-m1"],
 #shn-m2:checked ~ .shn-tabs label[for="shn-m2"],
 #shn-m3:checked ~ .shn-tabs label[for="shn-m3"],
@@ -203,7 +199,7 @@ br + .shn-container {
 }
 
 /* ------------------------------------------
-   6. TIPOGRAFÍA Y TÍTULOS DE CONTENIDO
+   6. TIPOGRAFÍA Y LÍNEA DORA DE DEGRADADO (RESTAURADA)
    ------------------------------------------ */
 .shn-title {
     font-family: 'Noto Serif JP', serif !important;
@@ -215,14 +211,17 @@ br + .shn-container {
     padding: 0 !important;
     text-transform: uppercase !important;
     line-height: 1.2 !important;
+    width: 100% !important;
 }
 
+/* Restaure de la línea del título con degradado */
 .shn-title::after {
     content: "" !important;
     flex: 1 !important;
     height: 1px !important;
     background: linear-gradient(to right, var(--shn-gold), transparent) !important;
     margin-left: 20px !important;
+    display: block !important;
 }
 
 .shn-sub-title {
@@ -239,4 +238,171 @@ br + .shn-container {
     line-height: 1.2 !important;
 }
 
-.shn-sub-title i
+.shn-sub-title i {
+    color: var(--shn-gold) !important;
+}
+
+.shn-text {
+    line-height: 1.8 !important;
+    font-size: 13px !important;
+    color: #bbb !important;
+    text-align: justify !important;
+}
+
+.shn-text b {
+    color: var(--shn-gold) !important;
+    font-weight: 600 !important;
+}
+
+.shn-mb-15 { margin-bottom: 15px !important; }
+.shn-mb-20 { margin-bottom: 20px !important; }
+
+/* ------------------------------------------
+   7. TARJETAS DE MISIÓN
+   ------------------------------------------ */
+.shn-mission-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid #222 !important;
+    border-left: 3px solid var(--shn-gold) !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    transition: 0.3s !important;
+    position: relative !important;
+}
+
+.shn-mission-card:hover {
+    border-color: var(--shn-gold) !important;
+    background: rgba(212, 175, 55, 0.04) !important;
+    transform: translateX(5px) !important;
+}
+
+.shn-card-done { border-left-color: #555 !important; }
+.shn-card-progress { border-left-color: #e6c200 !important; }
+.shn-card-pending { border-left-color: #d9534f !important; }
+
+.shn-mission-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 1px solid #222 !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 12px !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
+.shn-mission-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: 16px !important;
+    color: var(--shn-gold) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Badges */
+.shn-badge {
+    font-size: 10px !important;
+    padding: 3px 10px !important;
+    border-radius: 2px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+}
+
+.shn-badge-d { background: #1b2e1b !important; color: #62c462 !important; border: 1px solid #2e592e !important; }
+.shn-badge-c { background: #1a2a3a !important; color: #5bc0de !important; border: 1px solid #2a4a6a !important; }
+.shn-badge-b { background: #3a2a1a !important; color: #f0ad4e !important; border: 1px solid #6a4a2a !important; }
+.shn-badge-done { background: #222 !important; color: #888 !important; border: 1px solid #444 !important; }
+.shn-badge-progress { background: #332a00 !important; color: #e6c200 !important; border: 1px solid #665400 !important; }
+.shn-badge-pending { background: #3a1a1a !important; color: #d9534f !important; border: 1px solid #6a2a2a !important; }
+
+/* ------------------------------------------
+   8. CUADRÍCULAS (GRIDS) Y ESTADÍSTICAS
+   ------------------------------------------ */
+.shn-mission-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 10px !important;
+    margin: 12px 0 !important;
+    font-size: 0 !important;
+    color: #aaa !important;
+}
+
+.shn-mission-grid div {
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 8px 12px !important;
+    border: 1px solid #1c1c1c !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+
+.shn-mission-grid b {
+    color: var(--shn-gold) !important;
+}
+
+.shn-reward {
+    font-family: 'Cinzel', serif !important;
+    color: #fff !important;
+    font-size: 13px !important;
+}
+
+.shn-reward::before {
+    content: "両 " !important;
+    color: var(--shn-gold) !important;
+}
+
+.shn-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 15px !important;
+    margin-bottom: 30px !important;
+    font-size: 0 !important;
+}
+
+.shn-stat-box {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid #222 !important;
+    padding: 20px !important;
+    text-align: center !important;
+    font-size: 12px !important;
+}
+
+.shn-stat-box i {
+    font-size: 24px !important;
+    color: var(--shn-gold) !important;
+    margin-bottom: 10px !important;
+}
+
+.shn-stat-number {
+    font-family: 'Cinzel', serif !important;
+    font-size: 22px !important;
+    color: #fff !important;
+    display: block !important;
+    line-height: 1.2 !important;
+}
+
+.shn-stat-label {
+    font-size: 10px !important;
+    color: #888 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    line-height: 1 !important;
+}
+
+/* ------------------------------------------
+   9. PIE DE PÁGINA
+   ------------------------------------------ */
+.shn-footer {
+    background: #000 !important;
+    padding: 15px !important;
+    text-align: center !important;
+    border-top: 1px solid #222 !important;
+    margin: 0 !important;
+}
+
+.shn-footer img {
+    opacity: 0.5 !important;
+    width: 30px !important;
+}
