@@ -318,22 +318,29 @@
 }
 
 /* ==========================================
-   SOLUCIÓN DE SALTOS DE LÍNEA EN FOROACTIVO
+   FIX DEFINITIVO DE GRID/FLEX PARA FOROACTIVO
    ========================================== */
 
-/* Anula los <br> automáticos generados por Foroactivo en la plantilla */
+/* 1. Ocultar etiquetas br inyectadas */
 .shn-container br {
     display: none !important;
 }
 
-/* Mantiene los saltos de línea donde sí se escriben textos largos */
+/* 2. Reactivar br solo dentro de párrafos de texto */
 .shn-text br {
     display: inline !important;
 }
 
-/* Elimina márgenes fantasma que Foroactivo genera en párrafos vacíos */
-.shn-container p:empty {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+/* 3. Colapsar nodos de texto y espacios invisibles en Grids */
+.shn-stats-grid,
+.shn-mission-grid,
+.shn-tabs {
+    font-size: 0;
+}
+
+/* 4. Restaurar el tamaño de fuente real en los hijos */
+.shn-stat-box,
+.shn-mission-grid > div,
+.shn-label {
+    font-size: 12px;
 }
