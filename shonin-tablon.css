@@ -344,3 +344,33 @@
 .shn-label {
     font-size: 12px;
 }
+
+/* ==========================================
+   ELIMINAR ESPACIOS VERTICALES ENTRE BLOQUES
+   ========================================== */
+
+/* Colapsa nodos invisibles y saltos entre bloques del contenedor principal */
+.shn-container {
+    font-size: 0;
+}
+
+/* Restaura el font-size normal en todos los bloques internos */
+.shn-header,
+.shn-tabs,
+.shn-content,
+.shn-footer {
+    font-size: 13px;
+}
+
+/* Ajustes de margen/padding internos para eliminar huecos sobrantes */
+.shn-header {
+    margin-top: 0 !important;
+}
+
+.shn-content {
+    margin: 0 !important;
+}
+
+.shn-footer {
+    margin-bottom: 0 !important;
+}
