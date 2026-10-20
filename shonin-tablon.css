@@ -1,8 +1,7 @@
 /* ==========================================
-   TABLÓN DE MISIONES - SHŌNIN TSUTOME
+   TABLÓN DE MISIONES - SHŌNIN TSUTOME (FIX DEFINITIVO)
    ========================================== */
 
-/* Variables de Colores */
 .shn-container {
     --shn-gold: #d4af37;
     --shn-gold-light: #f9e297;
@@ -20,6 +19,24 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
+    
+    /* TRUCO CLAVE: Mata cualquier espacio en blanco o nodo fantasma heredado */
+    font-size: 0;
+}
+
+/* Forzar tamaño de texto normal en los hijos para que no se herede el 0 */
+.shn-container * {
+    font-size: initial;
+}
+
+/* Ocultar tajantemente cualquier cosa que Foroactivo intente inyectar */
+.shn-container br,
+.shn-container p:empty,
+.shn-container hr {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
 }
 
 /* Encabezado */
@@ -33,6 +50,7 @@
     align-items: center;
     padding-bottom: 25px;
     border-bottom: 2px solid var(--shn-gold);
+    margin: 0 !important;
 }
 
 .shn-header h1 {
@@ -61,6 +79,7 @@
     background: #000;
     border-bottom: 1px solid #222;
     flex-wrap: wrap;
+    margin: 0 !important;
 }
 
 .shn-radio {
@@ -120,6 +139,7 @@
     min-height: 400px;
     background: radial-gradient(circle at top right, #1a1a1a, #0a0a0a);
     animation: shnSlide 0.6s ease-out;
+    margin: 0 !important;
 }
 
 @keyframes shnSlide {
@@ -203,7 +223,6 @@
     transform: translateX(5px);
 }
 
-/* Modificadores de borde izquierdo por estado/rango */
 .shn-card-done { border-left-color: #555 !important; }
 .shn-card-progress { border-left-color: #e6c200 !important; }
 .shn-card-pending { border-left-color: #d9534f !important; }
@@ -226,7 +245,7 @@
     margin: 0;
 }
 
-/* Badges (Etiquetas) */
+/* Badges */
 .shn-badge {
     font-size: 10px;
     padding: 3px 10px;
@@ -243,7 +262,7 @@
 .shn-badge-progress { background: #332a00; color: #e6c200; border: 1px solid #665400; }
 .shn-badge-pending { background: #3a1a1a; color: #d9534f; border: 1px solid #6a2a2a; }
 
-/* Cuadrícula de Datos de Misión */
+/* Cuadrículas */
 .shn-mission-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -274,7 +293,6 @@
     color: var(--shn-gold);
 }
 
-/* Cajas de Estadísticas */
 .shn-stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -315,152 +333,10 @@
     padding: 15px;
     text-align: center;
     border-top: 1px solid #222;
-}
-
-/* ==========================================
-   FIX DEFINITIVO DE GRID/FLEX PARA FOROACTIVO
-   ========================================== */
-
-/* 1. Ocultar etiquetas br inyectadas */
-.shn-container br {
-    display: none !important;
-}
-
-/* 2. Reactivar br solo dentro de párrafos de texto */
-.shn-text br {
-    display: inline !important;
-}
-
-/* 3. Colapsar nodos de texto y espacios invisibles en Grids */
-.shn-stats-grid,
-.shn-mission-grid,
-.shn-tabs {
-    font-size: 0;
-}
-
-/* 4. Restaurar el tamaño de fuente real en los hijos */
-.shn-stat-box,
-.shn-mission-grid > div,
-.shn-label {
-    font-size: 12px;
-}
-
-/* ==========================================
-   ELIMINAR ESPACIOS VERTICALES ENTRE BLOQUES
-   ========================================== */
-
-/* Colapsa nodos invisibles y saltos entre bloques del contenedor principal */
-.shn-container {
-    font-size: 0;
-}
-
-/* Restaura el font-size normal en todos los bloques internos */
-.shn-header,
-.shn-tabs,
-.shn-content,
-.shn-footer {
-    font-size: 13px;
-}
-
-/* Ajustes de margen/padding internos para eliminar huecos sobrantes */
-.shn-header {
-    margin-top: 0 !important;
-}
-
-.shn-content {
     margin: 0 !important;
 }
 
-.shn-footer {
-    margin-bottom: 0 !important;
-}
-
-/* ==========================================
-   BLINDAJE ANTI-WYSIWYG / RE-PREVISUALIZACIÓN FOROACTIVO
-   ========================================== */
-
-/* 1. Ocultar todos los <br> directos del contenedor principal */
-.shn-container > br,
-.shn-content > br {
-    display: none !important;
-}
-
-/* 2. Ocultar párrafos vacíos creados por el editor */
-.shn-container p,
-.shn-content p {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-.shn-container p:empty,
-.shn-content p:empty {
-    display: none !important;
-}
-
-/* 3. Evitar que los saltos entren en el flujo flex/block de la cabecera, pestañas y tarjetas */
-.shn-tabs br,
-.shn-header br,
-.shn-mission-card br,
-.shn-mission-header br,
-.shn-mission-grid br,
-.shn-stats-grid br {
-    display: none !important;
-}
-
-/* 4. Permitir saltos ÚNICAMENTE dentro del texto explicativo/narrativo */
-.shn-text br {
-    display: inline !important;
-}
-
-/* ==========================================
-   SOLUCIÓN RADICAL ANTI-FRANJAS EN FOROACTIVO
-   ========================================== */
-
-/* 1. Neutralizar cualquier separación heredada del foro */
-.shn-container {
-    margin: 30px auto !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-}
-
-/* 2. Anular márgenes y paddings fantasmas en los bloques principales */
-.shn-header,
-.shn-tabs,
-.shn-content,
-.shn-footer {
-    margin: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* 3. Reasignar el padding necesario de forma controlada */
-.shn-header {
-    height: 250px !important;
-    padding-bottom: 25px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-}
-
-.shn-tabs {
-    padding: 0 !important;
-}
-
-.shn-content {
-    padding: 40px !important;
-}
-
-.shn-footer {
-    padding: 15px !important;
-}
-
-/* 4. Ocultar de forma absoluta cualquier etiqueta <br> o <p> vacía inyectada */
-.shn-container br,
-.shn-container p:empty,
-.shn-container p:not(:has(*)) {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 0 !important;
-    line-height: 0 !important;
+.shn-footer img {
+    opacity: 0.5;
+    width: 30px;
 }
