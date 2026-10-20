@@ -1,0 +1,323 @@
+/* ==========================================
+   TABLÓN DE MISIONES - SHŌNIN TSUTOME
+   ========================================== */
+
+/* Variables de Colores */
+.shn-container {
+    --shn-gold: #d4af37;
+    --shn-gold-light: #f9e297;
+    --shn-black: #0a0a0a;
+    --shn-dark-grey: #1a1a1a;
+    --shn-text: #e0e0e0;
+    
+    margin: 30px auto;
+    width: 95%;
+    max-width: 800px;
+    background: var(--shn-black);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--shn-text);
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Encabezado */
+.shn-header {
+    height: 250px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--shn-black)), 
+                url('https://cdn.imgchest.com/files/63d7504de4a4.png') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--shn-gold);
+}
+
+.shn-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: var(--shn-gold);
+    margin: 0;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.shn-header-sub {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Sistema de Pestañas Navegación */
+.shn-tabs {
+    display: flex;
+    background: #000;
+    border-bottom: 1px solid #222;
+    flex-wrap: wrap;
+}
+
+.shn-radio {
+    display: none;
+}
+
+.shn-label {
+    flex: 1;
+    min-width: 100px;
+    padding: 14px 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    transition: 0.4s;
+    border-top: 2px solid transparent;
+}
+
+.shn-label i {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.shn-label:hover, 
+.shn-label:hover i {
+    color: var(--shn-gold);
+}
+
+/* Activación de Pestañas */
+#shn-m1:checked ~ .shn-tabs label[for="shn-m1"],
+#shn-m2:checked ~ .shn-tabs label[for="shn-m2"],
+#shn-m3:checked ~ .shn-tabs label[for="shn-m3"],
+#shn-m4:checked ~ .shn-tabs label[for="shn-m4"],
+#shn-m5:checked ~ .shn-tabs label[for="shn-m5"] {
+    background: var(--shn-dark-grey);
+    color: var(--shn-gold);
+    border-top-color: var(--shn-gold);
+}
+
+#shn-m1:checked ~ .shn-tabs label[for="shn-m1"] i,
+#shn-m2:checked ~ .shn-tabs label[for="shn-m2"] i,
+#shn-m3:checked ~ .shn-tabs label[for="shn-m3"] i,
+#shn-m4:checked ~ .shn-tabs label[for="shn-m4"] i,
+#shn-m5:checked ~ .shn-tabs label[for="shn-m5"] i {
+    color: var(--shn-gold);
+}
+
+/* Contenido de Paneles */
+.shn-content {
+    display: none;
+    padding: 40px;
+    min-height: 400px;
+    background: radial-gradient(circle at top right, #1a1a1a, #0a0a0a);
+    animation: shnSlide 0.6s ease-out;
+}
+
+@keyframes shnSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#shn-m1:checked ~ .shn-mc1,
+#shn-m2:checked ~ .shn-mc2,
+#shn-m3:checked ~ .shn-mc3,
+#shn-m4:checked ~ .shn-mc4,
+#shn-m5:checked ~ .shn-mc5 {
+    display: block;
+}
+
+/* Títulos internos */
+.shn-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    color: var(--shn-gold);
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.shn-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--shn-gold), transparent);
+    margin-left: 20px;
+}
+
+.shn-sub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--shn-gold);
+    margin: 25px 0 15px 0;
+    border-bottom: 1px solid #222;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.shn-sub-title i {
+    color: var(--shn-gold);
+}
+
+.shn-text {
+    line-height: 1.8;
+    font-size: 13px;
+    color: #bbb;
+    text-align: justify;
+}
+
+.shn-text b {
+    color: var(--shn-gold);
+    font-weight: 600;
+}
+
+.shn-mb-15 { margin-bottom: 15px; }
+.shn-mb-20 { margin-bottom: 20px; }
+
+/* Tarjeta de Misión */
+.shn-mission-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #222;
+    border-left: 3px solid var(--shn-gold);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.shn-mission-card:hover {
+    border-color: var(--shn-gold);
+    background: rgba(212, 175, 55, 0.04);
+    transform: translateX(5px);
+}
+
+/* Modificadores de borde izquierdo por estado/rango */
+.shn-card-done { border-left-color: #555 !important; }
+.shn-card-progress { border-left-color: #e6c200 !important; }
+.shn-card-pending { border-left-color: #d9534f !important; }
+
+.shn-mission-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.shn-mission-title {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--shn-gold);
+    margin: 0;
+}
+
+/* Badges (Etiquetas) */
+.shn-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.shn-badge-d { background: #1b2e1b; color: #62c462; border: 1px solid #2e592e; }
+.shn-badge-c { background: #1a2a3a; color: #5bc0de; border: 1px solid #2a4a6a; }
+.shn-badge-b { background: #3a2a1a; color: #f0ad4e; border: 1px solid #6a4a2a; }
+.shn-badge-done { background: #222; color: #888; border: 1px solid #444; }
+.shn-badge-progress { background: #332a00; color: #e6c200; border: 1px solid #665400; }
+.shn-badge-pending { background: #3a1a1a; color: #d9534f; border: 1px solid #6a2a2a; }
+
+/* Cuadrícula de Datos de Misión */
+.shn-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.shn-mission-grid div {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border: 1px solid #1c1c1c;
+}
+
+.shn-mission-grid b {
+    color: var(--shn-gold);
+}
+
+.shn-reward {
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    font-size: 13px;
+}
+
+.shn-reward::before {
+    content: "両 ";
+    color: var(--shn-gold);
+}
+
+/* Cajas de Estadísticas */
+.shn-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.shn-stat-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #222;
+    padding: 20px;
+    text-align: center;
+}
+
+.shn-stat-box i {
+    font-size: 24px;
+    color: var(--shn-gold);
+    margin-bottom: 10px;
+}
+
+.shn-stat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: #fff;
+    display: block;
+}
+
+.shn-stat-label {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Pie de Página */
+.shn-footer {
+    background: #000;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.shn-footer img {
+    opacity: 0.5;
+    width: 30px;
+}
