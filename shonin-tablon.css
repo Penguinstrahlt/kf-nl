@@ -317,6 +317,15 @@
     border-top: 1px solid #222;
 }
 
+/* Neutraliza los <br> automáticos de Foroactivo dentro del contenedor */
+.shn-container br {
+    display: none;
+}
+
+/* Restaura los saltos de línea solo en textos donde sí se necesitan */
+.shn-text br {
+    display: inline;
+}
 .shn-footer img {
     opacity: 0.5;
     width: 30px;
